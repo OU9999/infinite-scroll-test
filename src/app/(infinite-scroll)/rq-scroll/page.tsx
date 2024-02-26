@@ -1,6 +1,6 @@
 import InfiniteScroll from "@/components/infinite-scroll";
 
-const InfiniteScrollPage = async () => {
+const RqInfiniteScrollPage = async () => {
   return (
     <>
       <div className="w-full h-auto flex flex-col justify-center content-center">
@@ -10,4 +10,4 @@ const InfiniteScrollPage = async () => {
   );
 };
 
-export default InfiniteScrollPage;
+export default RqInfiniteScrollPage;

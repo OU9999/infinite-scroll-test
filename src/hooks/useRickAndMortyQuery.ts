@@ -1,8 +1,8 @@
-import { useSuspenseInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 interface GetRickAndMortyCharacterProps {
-  pageParam?: number;
+  pageParam?: number | string;
 }
 const getRickAndMortyCharacter = async ({
   pageParam,
@@ -45,9 +45,10 @@ interface RickAndMortyCharacter {
 }
 
 export const useRickAndMortyCharacterQuery = () => {
-  return useSuspenseInfiniteQuery<RickAndMortyCharacter, Error>({
+  return useInfiniteQuery<RickAndMortyCharacter, Error>({
     queryKey: ["test"],
-    queryFn: ({ pageParam }) => getRickAndMortyCharacter(pageParam as any),
+    queryFn: ({ pageParam = 1 }) =>
+      getRickAndMortyCharacter({ pageParam: Number(pageParam) }),
     staleTime: Infinity,
     initialPageParam: 1,
     getNextPageParam: (lastpage) =>

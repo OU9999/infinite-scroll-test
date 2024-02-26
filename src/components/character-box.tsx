@@ -16,6 +16,7 @@ const DescBox = ({ type, text }: DescBoxProps) => {
 };
 
 interface CharacterBoxProps {
+  id: number;
   img: string;
   name: string;
   status: string;
@@ -25,6 +26,7 @@ interface CharacterBoxProps {
 }
 
 const CharacterBox = ({
+  id,
   img,
   name,
   status,
@@ -33,13 +35,23 @@ const CharacterBox = ({
   created,
 }: CharacterBoxProps) => {
   return (
-    <div className="flex bg-slate-100 space-x-1 rounded-lg overflow-hidden">
-      <Image alt="character-img" src={img} width={400} height={200} />
+    <div className="flex w-full bg-slate-100 space-x-1 rounded-lg overflow-hidden">
+      <div className="relative w-48 md:w-72 flex-shrink-0 flex-grow-0">
+        <Image
+          alt="character-img"
+          src={img}
+          fill
+          placeholder="blur"
+          blurDataURL={
+            "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPce/h4PQAHVALI8GDtfQAAAABJRU5ErkJggg=="
+          }
+        />
+      </div>
 
       <div className="flex w-full flex-col py-2 px-2 justify-center">
         <p className="text-2xl font-bold mb-5">{name}</p>
 
-        <div className="w-full h-auto space-y-2 ">
+        <div className="w-full h-auto space-y-2">
           <DescBox type="status" text={status} />
           <DescBox type="species" text={species} />
           <DescBox type="gender" text={gender} />

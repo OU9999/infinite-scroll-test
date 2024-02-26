@@ -9,7 +9,10 @@ const InfiniteScrollLayout = ({ children }: AngProps) => {
     <div className="w-dvw h-auto relative">
       <div className="w-full flex justify-center items-center z-0">
         <div className="w-full max-w-[68rem] flex flex-col justify-center items-center">
-          <p className="text-7xl py-20">한무 스크롤 테스트</p>
+          <div className="w-full pt-20 pb-10 border-b-2 text-7xl flex justify-center">
+            <p className="">Infinite Scroll</p>
+          </div>
+
           {children}
         </div>
       </div>
