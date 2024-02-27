@@ -1,5 +1,5 @@
 const SaInfiniteScrollPage = () => {
-  return <div></div>;
+  return <div className="pt-[200vh]"></div>;
 };
 
 export default SaInfiniteScrollPage;

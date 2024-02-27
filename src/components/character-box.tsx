@@ -1,5 +1,6 @@
 import { formatDateToString } from "@/utils/dateUtil";
 import Image from "next/image";
+import SkeletonBox from "./skeleton-box";
 
 interface DescBoxProps {
   type: string;
@@ -35,7 +36,7 @@ const CharacterBox = ({
   created,
 }: CharacterBoxProps) => {
   return (
-    <div className="flex w-full bg-slate-100 space-x-1 rounded-lg overflow-hidden">
+    <div className="flex w-full h-72 bg-slate-100 space-x-1 rounded-lg overflow-hidden">
       <div className="relative w-48 md:w-72 flex-shrink-0 flex-grow-0">
         <Image
           alt="character-img"
