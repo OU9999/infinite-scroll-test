@@ -14,7 +14,7 @@ const getRickAndMortyCharacter = async ({
   return data;
 };
 
-interface CharacterResult {
+export interface CharacterResult {
   id: number;
   name: string;
   status: string;

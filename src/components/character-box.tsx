@@ -1,6 +1,7 @@
 import { formatDateToString } from "@/utils/dateUtil";
 import Image from "next/image";
 import SkeletonBox from "./skeleton-box";
+import Link from "next/link";
 
 interface DescBoxProps {
   type: string;
@@ -50,8 +51,11 @@ const CharacterBox = ({
       </div>
 
       <div className="flex w-full flex-col py-2 px-2 justify-center">
-        <p className="text-2xl font-bold mb-5">{name}</p>
-
+        <Link href={`/about/${id}`}>
+          <p className="text-2xl font-bold mb-5 cursor-pointer hover:underline">
+            {name}
+          </p>
+        </Link>
         <div className="w-full h-auto space-y-2">
           <DescBox type="status" text={status} />
           <DescBox type="species" text={species} />
