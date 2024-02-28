@@ -50,6 +50,7 @@ export const useRickAndMortyCharacterQuery = () => {
     queryFn: ({ pageParam = 1 }) =>
       getRickAndMortyCharacter({ pageParam: Number(pageParam) }),
     staleTime: Infinity,
+    gcTime: Infinity,
     initialPageParam: 1,
     getNextPageParam: (lastpage) =>
       lastpage.info.next ? lastpage.info.next.slice(-1) : null,
