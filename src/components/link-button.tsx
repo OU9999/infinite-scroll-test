@@ -7,7 +7,7 @@ interface LinkButtonProps {
 
 const LinkButton = ({ link, text }: LinkButtonProps) => {
   return (
-    <Link href={link} scroll={false}>
+    <Link href={link}>
       <button className="px-5 py-1 bg-slate-200 rounded-md hover:bg-slate-400">
         {text}
       </button>

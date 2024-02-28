@@ -13,11 +13,8 @@ const InfiniteScroll = () => {
     isLoading,
   } = useRickAndMortyCharacterQuery();
   const virtuosoRef = useRef<any>(null);
-  const idxRef = useRef<any>(null);
-
-  const hello = Number(sessionStorage.getItem("test"));
-
-  //idx 5 start pt24512px / pb6128px
+  const dataKnownSize = 6128;
+  const currentIdxSession = Number(sessionStorage.getItem("test"));
 
   const loadMore = useCallback(() => {
     return setTimeout(() => {
@@ -29,23 +26,20 @@ const InfiniteScroll = () => {
 
   const handleIndex = () => {
     virtuosoRef.current.scrollToIndex({
-      index: hello,
+      index: currentIdxSession,
       align: "start",
     });
 
     return false;
   };
 
+  const hadnleScroll = () => {
+    const currentIdx = Math.round(scrollY / dataKnownSize);
+    sessionStorage.setItem("test", String(currentIdx));
+  };
+
   useEffect(() => {
     handleIndex();
-
-    console.log(hello);
-
-    return () => {
-      const length = CharactersData?.pages.length;
-      // console.log(virtuosoRef.getState());
-      return sessionStorage.setItem("test", String(length));
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,8 +60,9 @@ const InfiniteScroll = () => {
         totalCount={CharactersData?.pages[0].info.count}
         data={CharactersData?.pages}
         endReached={loadMore}
-        initialItemCount={hello}
-        initialScrollTop={hello}
+        isScrolling={() => hadnleScroll()}
+        initialItemCount={currentIdxSession}
+        initialScrollTop={currentIdxSession}
         itemContent={(idx, data) => (
           <div className="flex flex-col px-2 space-y-3 justify-center content-center items-center">
             <p className="text-9xl">idx {idx}</p>
