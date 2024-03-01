@@ -14,7 +14,10 @@ const InfiniteScroll = () => {
   } = useRickAndMortyCharacterQuery();
   const virtuosoRef = useRef<any>(null);
   const dataKnownSize = 6128;
-  const currentIdxSession = Number(sessionStorage.getItem("test"));
+  const currentIdxSession = Number.isNaN(Number(sessionStorage.getItem("test")))
+    ? undefined
+    : Number(sessionStorage.getItem("test"));
+  console.log("currentIdxSession>>", currentIdxSession);
 
   const loadMore = useCallback(() => {
     return setTimeout(() => {
@@ -41,6 +44,16 @@ const InfiniteScroll = () => {
   useEffect(() => {
     handleIndex();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const clearSessionStorage = () => sessionStorage.clear();
+    window.addEventListener("beforeunload", clearSessionStorage);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거합니다.
+    return () => {
+      window.removeEventListener("beforeunload", clearSessionStorage);
+    };
   }, []);
 
   return (
