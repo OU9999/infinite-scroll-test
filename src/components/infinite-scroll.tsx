@@ -50,7 +50,6 @@ const InfiniteScroll = () => {
     const clearSessionStorage = () => sessionStorage.clear();
     window.addEventListener("beforeunload", clearSessionStorage);
 
-    // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거합니다.
     return () => {
       window.removeEventListener("beforeunload", clearSessionStorage);
     };
