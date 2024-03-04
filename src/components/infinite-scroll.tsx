@@ -14,10 +14,7 @@ const InfiniteScroll = () => {
   } = useRickAndMortyCharacterQuery();
   const virtuosoRef = useRef<any>(null);
   const dataKnownSize = 6128;
-  const currentIdxSession = Number.isNaN(Number(sessionStorage.getItem("test")))
-    ? undefined
-    : Number(sessionStorage.getItem("test"));
-  console.log("currentIdxSession>>", currentIdxSession);
+  const currentIdxSession = Number(sessionStorage.getItem("index"));
 
   const loadMore = useCallback(() => {
     return setTimeout(() => {
@@ -30,7 +27,7 @@ const InfiniteScroll = () => {
   const handleIndex = () => {
     virtuosoRef.current.scrollToIndex({
       index: currentIdxSession,
-      align: "start",
+      align: "center",
     });
 
     return false;
@@ -38,7 +35,7 @@ const InfiniteScroll = () => {
 
   const hadnleScroll = () => {
     const currentIdx = Math.round(scrollY / dataKnownSize);
-    sessionStorage.setItem("test", String(currentIdx));
+    sessionStorage.setItem("index", String(currentIdx));
   };
 
   useEffect(() => {
