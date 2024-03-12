@@ -46,10 +46,6 @@ const InfiniteScroll = () => {
   useEffect(() => {
     const clearSessionStorage = () => sessionStorage.clear();
     window.addEventListener("beforeunload", clearSessionStorage);
-
-    return () => {
-      window.removeEventListener("beforeunload", clearSessionStorage);
-    };
   }, []);
 
   return (
